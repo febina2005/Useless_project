@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fireworks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fireworks-theme"> 
+  <canvas id="fireworkCanvas"></canvas>
+  <div class="section">
+    <h2>🎆 Firework Show</h2>
+    <button onclick="launchFirework()">Adi pookutty..!</button>
+    <br><br>
+    <a href="index.html" class="button-link">⬅ Back to Home</a>
+  </div>
+  <script>
+    function launchFirework() {
+      const canvas = document.getElementById("fireworkCanvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let particles = [];
+      const gravity = 0.05;
+      const origins = [
+        [canvas.width / 2, canvas.height / 2], [0, 0], [canvas.width, 0],
+        [0, canvas.height], [canvas.width, canvas.height],
+        [canvas.width / 2, 0], [canvas.width / 2, canvas.height],
+        [0, canvas.height / 2], [canvas.width, canvas.height / 2]
+      ];
+      origins.forEach(([x, y]) => {
+        for (let i = 0; i < 50; i++) {
+          const angle = Math.random() * 2 * Math.PI;
+          const speed = Math.random() * 5 + 2;
+          particles.push({
+            x, y,
+            dx: Math.cos(angle) * speed,
+            dy: Math.sin(angle) * speed,
+            radius: 2 + Math.random() * 2,
+            alpha: 1,
+            decay: 0.01 + Math.random() * 0.02,
+            color: `hsl(${Math.random() * 360}, 100%, 60%)`
+          });
+        }
+      });
+      function animate() {
+        ctx.fillStyle = "rgba(0,0,0,0.2)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.dx;
+          p.y += p.dy;
+          p.dy += gravity;
+          p.alpha -= p.decay;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+        });
+        particles = particles.filter(p => p.alpha > 0);
+        if (particles.length > 0) requestAnimationFrame(animate);
+        else { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.globalAlpha = 1; }
+      }
+      animate();
+    }
+  </script>
+</body>
+</html>

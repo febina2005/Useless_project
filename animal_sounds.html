@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🐾 Animal Sounds</title>
+  <style>
+    /* Background animation */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Emoji bounce animation */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Pulse effect for playing */
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,255,255,0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.8); }
+      100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,255,255,0.4); }
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      padding: 20px;
+      min-height: 100vh;
+      color: white;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .emoji {
+      display: inline-block;
+      animation: bounce 1.5s infinite;
+    }
+
+    button {
+      padding: 15px 35px;
+      margin: 15px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      font-weight: bold;
+    }
+
+    .deer { background-color: #8e44ad; }
+    .cat { background-color: #e67e22; }
+    .dog { background-color: #27ae60; }
+    .bird { background-color: #3498db; }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    .playing {
+      animation: pulse 0.6s ease;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #444;
+      border: 2px solid #666;
+      transition: all 0.2s ease;
+    }
+    .back-link:hover {
+      background: #ffe6e6;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <h1><span class="emoji">🐾</span> Animal Sounds</h1>
+  <p>Click a button to hear the sound!</p>
+
+  <button class="deer" onclick="playSound(this, 'deer')">🦌 Deer</button>
+  <button class="cat" onclick="playSound(this, 'cat')">🐱 Cat</button>
+  <button class="dog" onclick="playSound(this, 'dog')">🐶 Dog</button>
+  <button class="bird" onclick="playSound(this, 'bird')">🐦 Bird</button>
+
+  <br>
+  <a href="index.html" class="back-link">⬅ Back to Home</a>
+
+  <script>
+    function playSound(button, animal) {
+      let soundFile = `sounds/${animal}.mp3`; 
+      let audio = new Audio(soundFile);
+      button.classList.add("playing");
+      audio.play();
+      setTimeout(() => {
+        button.classList.remove("playing");
+      }, 600);
+    }
+  </script>
+
+</body>
+</html>

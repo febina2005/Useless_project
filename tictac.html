@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #ticTacBoard {
+      display: grid;
+      grid-template-columns: repeat(3, 70px);
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .cell {
+      width: 70px;
+      height: 70px;
+      font-size: 36px;
+      background-color: #fff;
+      border: 2px solid #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cell.X { color: #e74c3c; }
+    .cell.O { color: #2980b9; }
+  </style>
+</head>
+<body class="tictac-theme">
+  <div class="section">
+    <h2>⭕ Tic Tac Toe</h2>
+    <p>
+      <label><input type="radio" name="mode" value="1" checked onchange="resetTicTacToe()"> Player vs Computer</label>
+      <label><input type="radio" name="mode" value="2" onchange="resetTicTacToe()"> 2 Player</label>
+    </p>
+    <div id="ticTacBoard"></div>
+    <p id="ticTacResult"></p>
+    <button onclick="resetTicTacToe()">Reset Game</button>
+    <br><br>
+    <a href="index.html" class="button-link">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    let board = Array(9).fill('');
+    let currentPlayer = 'X';
+
+    function getMode() {
+      return document.querySelector('input[name="mode"]:checked').value === '2' ? 'PvP' : 'PvC';
+    }
+
+    function renderBoard() {
+      const grid = document.getElementById('ticTacBoard');
+      grid.innerHTML = '';
+      board.forEach((val, i) => {
+        const cell = document.createElement('div');
+        cell.className = 'cell ' + val;
+        cell.textContent = val;
+        cell.onclick = () => makeMove(i);
+        grid.appendChild(cell);
+      });
+    }
+
+    function makeMove(i) {
+      if (board[i] || checkWinner()) return;
+      board[i] = currentPlayer;
+      renderBoard();
+      const winner = checkWinner();
+      if (winner) {
+        document.getElementById('ticTacResult').textContent = `🎉 ${winner} wins!`;
+        return;
+      } else if (!board.includes('')) {
+        document.getElementById('ticTacResult').textContent = "It's a draw!";
+        return;
+      }
+      if (getMode() === 'PvC' && currentPlayer === 'X') {
+        currentPlayer = 'O';
+        setTimeout(() => {
+          const empty = board.map((v, i) => v === '' ? i : null).filter(v => v !== null);
+          const move = empty[Math.floor(Math.random() * empty.length)];
+          if (move !== undefined) board[move] = 'O';
+          renderBoard();
+          const winner = checkWinner();
+          if (winner) {
+            document.getElementById('ticTacResult').textContent = `🎉 ${winner} wins!`;
+          } else if (!board.includes('')) {
+            document.getElementById('ticTacResult').textContent = "It's a draw!";
+          }
+          currentPlayer = 'X';
+        }, 500);
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      }
+    }
+
+    function checkWinner() {
+      const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+      for (const [a,b,c] of wins) {
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) return board[a];
+      }
+      return null;
+    }
+
+    function resetTicTacToe() {
+      board = Array(9).fill('');
+      currentPlayer = 'X';
+      document.getElementById('ticTacResult').textContent = '';
+      renderBoard();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderBoard);
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Useless Button 🙃</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    #uselessBtn {
+      position: relative;
+      background: linear-gradient(145deg, #ffe6f0, #fff);
+      border: 2px solid #ff8ac6;
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      color: #444;
+    }
+
+    #uselessBtn:hover {
+      background: #ffd6ec;
+      box-shadow: 0 0 15px rgba(255, 128, 171, 0.5);
+    }
+
+    #message {
+      font-size: 1.4em;
+      font-style: italic;
+      margin-bottom: 15px;
+      color: rgb(0, 0, 0);
+      min-height: 1.4em;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #444;
+      border: 2px solid #9b6b6b;
+    }
+
+    a:hover {
+      background: #ffe6e6;
+    }
+  </style>
+</head>
+<body>
+  <h1><span class="emoji-animate">🙃</span> The Useless Button</h1>
+  <p>Try to click me... if you can 😏</p>
+
+  <div id="message"></div>
+  <button id="uselessBtn">Click Me</button>
+
+  <a href="index.html">⬅ Back to Home</a>
+
+  <script>
+    const uselessBtn = document.getElementById("uselessBtn");
+    const messageEl = document.getElementById("message");
+
+    const messages = [
+      "You missed me! 😂",
+      "Too slow, human! 🏃‍♂️💨",
+      "Catch me if you can! 🐇",
+      "I’m outta here! 🚀",
+      "Better luck next time! 😜",
+      "Nope, not today! ✋",
+      "So close… yet so far! 😏",
+      "You’ll never catch me! 😎"
+    ];
+
+    if (uselessBtn) {
+      uselessBtn.addEventListener("mouseover", () => {
+        const x = Math.floor(Math.random() * (window.innerWidth - 150));
+        const y = Math.floor(Math.random() * (window.innerHeight - 80));
+        uselessBtn.style.position = "absolute";
+        uselessBtn.style.left = `${x}px`;
+        uselessBtn.style.top = `${y}px`;
+
+        // Show a new funny message
+        messageEl.textContent = messages[Math.floor(Math.random() * messages.length)];
+      });
+
+      uselessBtn.addEventListener("click", () => {
+        alert("😲 You actually clicked me?! That’s… useless.");
+      });
+    }
+  </script>
+</body>
+</html>

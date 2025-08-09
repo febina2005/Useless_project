@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rapid Tap Challenge ⏱️</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    background: radial-gradient(circle, #ff0080, #7928ca);
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 { font-size: 2.5em; margin-bottom: 10px; }
+  #tapBtn {
+    padding: 20px 50px;
+    font-size: 2em;
+    border: none;
+    border-radius: 12px;
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #00ffcc;
+    transition: transform 0.1s;
+  }
+  #tapBtn:active { transform: scale(0.95); }
+  #score, #timer { font-size: 1.5em; margin: 10px; }
+  .confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: yellow;
+    animation: fall 1.5s linear forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(720deg); }
+  }
+</style>
+</head>
+<body>
+
+<h1>Rapid Tap Challenge ⏱️</h1>
+<p id="timer">Time Left: 5s</p>
+<p id="score">Score: 0</p>
+<button id="tapBtn" onclick="tap()">TAP!</button>
+
+<a href="index.html" style="color:white;display:block;margin-top:20px;">⬅ Back</a>
+
+<script>
+let score = 0, timeLeft = 5, timerInterval, gameStarted = false;
+
+function tap() {
+  if (!gameStarted) {
+    gameStarted = true;
+    timerInterval = setInterval(countdown, 1000);
+  }
+  score++;
+  document.getElementById("score").textContent = "Score: " + score;
+  createConfetti();
+}
+
+function countdown() {
+  timeLeft--;
+  document.getElementById("timer").textContent = "Time Left: " + timeLeft + "s";
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    document.getElementById("tapBtn").disabled = true;
+    alert("⏱️ Time's up! You scored " + score + " taps!");
+  }
+}
+
+function createConfetti() {
+  for (let i = 0; i < 5; i++) {
+    let confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 1500);
+  }
+}
+</script>
+</body>
+</html>

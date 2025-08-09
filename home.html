@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chumma Oru Rasam</title>
+  <style>
+    /* Background gradient animation */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Bounce-in heading */
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating emojis */
+    @keyframes floatEmoji {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Twinkle effect */
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* Rotation animation */
+    @keyframes rotateFloat {
+      0% { transform: rotate(0deg) translateY(0); }
+      50% { transform: rotate(15deg) translateY(-10px); }
+      100% { transform: rotate(0deg) translateY(0); }
+    }
+
+    /* Button pulse */
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,255,255,0.5); }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.8); }
+      100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,255,255,0.5); }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      animation: bounceIn 1s ease;
+      z-index: 2;
+    }
+
+    /* Explore button */
+    .explore-btn {
+      padding: 15px 40px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ffde59;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+      z-index: 2;
+    }
+    .explore-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #fff;
+    }
+
+    /* Floating emoji base */
+    .floating-emoji {
+      position: absolute;
+      font-size: 2em;
+      opacity: 0.7;
+    }
+
+    /* Fade out effect */
+    .fade-out {
+      animation: fadeOut 0.8s forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating emojis -->
+  <div class="floating-emoji" style="top:10%; left:5%; animation: floatEmoji 3s ease-in-out infinite;">🎮</div>
+  <div class="floating-emoji" style="top:70%; left:15%; animation: rotateFloat 4s ease-in-out infinite;">🎆</div>
+  <div class="floating-emoji" style="top:20%; left:80%; animation: twinkle 2.5s infinite;">🧩</div>
+  <div class="floating-emoji" style="top:50%; left:90%; animation: floatEmoji 3.5s ease-in-out infinite;">😂</div>
+  <div class="floating-emoji" style="top:30%; left:30%; animation: twinkle 4s infinite;">🍕</div>
+  <div class="floating-emoji" style="top:60%; left:70%; animation: rotateFloat 5s ease-in-out infinite;">🎯</div>
+  <div class="floating-emoji" style="top:15%; left:60%; animation: floatEmoji 2.8s infinite;">🎵</div>
+  <div class="floating-emoji" style="top:80%; left:40%; animation: twinkle 3s infinite;">🥳</div>
+
+  <h1> Chumma Oru Rasam 🎮</h1>
+  <button class="explore-btn" onclick="goToMain()">🚀 Explore</button>
+
+  <script>
+    function goToMain() {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        location.href = 'index.html';
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #memoryBoard {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .tile {
+      width: 70px;
+      height: 70px;
+      font-size: 36px;
+      background-color: #fff;
+      border: 2px solid #333;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .tile:hover {
+      transform: scale(1.05);
+    }
+    .tile.revealed {
+      background-color: #e1ffe1;
+    }
+  </style>
+</head>
+<body class="memory-theme">
+  <div class="section">
+    <h2>🧠 Memory Game</h2>
+    <button onclick="startMemoryGame()">Start Game</button>
+    <div id="memoryBoard"></div>
+    <br>
+    <a href="index.html" class="button-link">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    function startMemoryGame() {
+      const emojis = ['🐶','🐱','🐰','🦊','🐻','🐼','🐸','🐵'];
+      const board = document.getElementById('memoryBoard');
+      let tiles = emojis.concat(emojis).sort(() => 0.5 - Math.random());
+      board.innerHTML = '';
+      let revealed = [];
+      let matched = [];
+
+      tiles.forEach((emoji, i) => {
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.dataset.emoji = emoji;
+        tile.onclick = () => {
+          if (tile.classList.contains('revealed') || revealed.length >= 2) return;
+          tile.textContent = emoji;
+          tile.classList.add('revealed');
+          revealed.push(tile);
+          if (revealed.length === 2) {
+            const [first, second] = revealed;
+            if (first.dataset.emoji === second.dataset.emoji) {
+              matched.push(first, second);
+              revealed = [];
+              if (matched.length === tiles.length) {
+                setTimeout(() => alert("🎉 You matched all pairs!"), 300);
+              }
+            } else {
+              setTimeout(() => {
+                first.textContent = '';
+                second.textContent = '';
+                first.classList.remove('revealed');
+                second.classList.remove('revealed');
+                revealed = [];
+              }, 600);
+            }
+          }
+        };
+        board.appendChild(tile);
+      });
+    }
+  </script>
+</body>
+</html>

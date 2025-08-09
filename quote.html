@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Quote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="quote-theme">
+  <div class="section">
+    <h2>📜 Daily Quote</h2>
+    <p id="quoteText">Click below to get a quote</p>
+    <button onclick="showQuote()">Get Quote</button>
+    <br><br>
+    <a href="index.html" class="button-link">⬅ Back to Home</a>
+  </div>
+  <script>
+    const quotes = [
+      "“Stay hungry, stay foolish.” – Steve Jobs",
+      "“Believe you can and you're halfway there.” – Theodore Roosevelt",
+      "“It always seems impossible until it's done.” – Nelson Mandela",
+      "“Stay hungry, stay foolish.” – Steve Jobs",
+      "“Believe you can and you're halfway there.” – Theodore Roosevelt",
+      "“It always seems impossible until it's done.” – Nelson Mandela",
+      "“The best way to get started is to quit talking and begin doing.” – Walt Disney",
+      "“Don’t let yesterday take up too much of today.” – Will Rogers",
+      "“It’s not whether you get knocked down, it’s whether you get up.” – Vince Lombardi",
+        "“Success is not final, failure is not fatal: It is the courage to continue that counts.” – Winston Churchill",
+      "“Believe you can and you're halfway there.” – Theodore Roosevelt",
+      "“Do one thing every day that scares you.” – Eleanor Roosevelt",
+      "“Hardships often prepare ordinary people for an extraordinary destiny.” – C.S. Lewis",
+    "“Happiness is not something ready-made. It comes from your own actions.” – Dalai Lama",
+    "“You miss 100% of the shots you don’t take.” – Wayne Gretzky",
+    "“Opportunities don't happen. You create them.” – Chris Grosser"
+
+    ];
+    function showQuote() {
+      document.getElementById("quoteText").textContent =
+        quotes[Math.floor(Math.random() * quotes.length)];
+    }
+  </script>
+</body>
+</html>

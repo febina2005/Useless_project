@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle of the Day</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="puzzle-theme">
+  <div class="section">
+    <h2>🧩 Puzzle of the Day</h2>
+    <p id="puzzleText">Click to reveal a puzzle!</p>
+    <button onclick="showPuzzle()">Show Puzzle</button>
+    <br><br>
+    <a href="index.html" class="button-link">⬅ Back to Home</a>
+  </div>
+  <script>
+    const puzzles = [
+  "What gets wetter the more it dries? A towel.",
+  "I speak without a mouth and hear without ears. What am I? An echo.",
+  "The more of me you take, the more you leave behind. What am I? Footsteps.",
+  "I have keys but no locks. What am I? A piano.",
+  "The more you take away from me, the bigger I get. What am I? A hole.",
+  "I’m tall when I’m young, and short when I’m old. What am I? A candle.",
+  "What comes once in a minute, twice in a moment, but never in a thousand years? The letter M.",
+  "I’m always running but never move. What am I? Time.",
+  "What can travel around the world while staying in the same corner? A stamp.",
+  "I’m light as a feather, but the strongest person can’t hold me for long. What am I? Breath.",
+  "I’m full of holes but can still hold water. What am I? A sponge.",
+  "You see me once in June, twice in November, and not at all in May. What am I? The letter E.",
+  "I can be cracked, made, told, and played. What am I? A joke.",
+  "What has an eye but cannot see? A needle.",
+  "The more you have of me, the less you see. What am I? Darkness.",
+  "What is always in front of you but can’t be seen? The future.",
+  "I go up but never come down. What am I? Your age.",
+  "I have no legs but will still run. What am I? A river.",
+  "I can fly without wings, cry without eyes. What am I? A cloud.",
+  "I am always in the past but never in the present or future. What am I? History."
+];
+
+    function showPuzzle() {
+      document.getElementById("puzzleText").textContent =
+        puzzles[Math.floor(Math.random() * puzzles.length)];
+    }
+  </script>
+</body>
+</html>

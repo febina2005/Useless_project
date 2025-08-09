@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cat Takeover 🐱</title>
+<style>
+  body {
+    background: #ffe4e1;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    height: 100vh;
+  }
+  h1 { font-size: 2.5em; color: #333; }
+  .cat {
+    position: absolute;
+    bottom: 0;
+    font-size: 2em;
+    animation: walk 8s linear infinite;
+  }
+  @keyframes walk {
+    0% { left: -50px; }
+    100% { left: 110vw; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🐱 Cat Takeover Mode</h1>
+<a href="index.html" style="color:black;display:block;margin-top:20px;">⬅ Back</a>
+
+<script>
+function spawnCat() {
+  let cat = document.createElement("div");
+  cat.className = "cat";
+  cat.textContent = "🐈";
+  cat.style.bottom = Math.random()*80 + "vh";
+  cat.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(cat);
+
+  // Play cat sound from local sounds folder
+  let audio = new Audio("sounds/cat.mp3");
+  audio.play();
+
+  setTimeout(() => cat.remove(), 10000);
+}
+setInterval(spawnCat, 2000);
+</script>
+</body>
+</html>

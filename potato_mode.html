@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Potato Mode 🥔</title>
+<style>
+  body {
+    background-color: #a67c52;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+  }
+  h1 { font-size: 2.5em; }
+  .potato {
+    position: absolute;
+    font-size: 2em;
+    animation: fall 5s linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-50px); }
+    100% { transform: translateY(110vh); }
+  }
+  #fact {
+    margin-top: 20px;
+    font-size: 1.2em;
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🥔 Potato Mode Activated!</h1>
+<div id="fact">Loading potato fact...</div>
+<a href="indexs.html" style="color:white;display:block;margin-top:20px;">⬅ Back</a>
+
+<script>
+const facts = [
+  "Potatoes were the first vegetable grown in space!",
+  "There are over 4,000 varieties of potatoes.",
+  "China is the largest producer of potatoes.",
+  "Potatoes are 80% water.",
+  "The largest potato ever recorded weighed over 11 pounds.",
+  "Potato chips were invented by accident in 1853.",
+  "In ancient Peru, people measured time by how long it took a potato to cook.",
+  "You can power a light bulb with a potato.",
+  "Potatoes contain vitamin C, potassium, and even a little protein.",
+  "Europe’s upper class once thought potatoes were poisonous.",
+  "NASA astronauts grew potatoes on the Space Shuttle Columbia in 1995.",
+  "Some potatoes have purple or blue flesh due to natural pigments.",
+  "The word 'potato' comes from the Spanish word 'patata'.",
+  "Sweet potatoes are not actually related to regular potatoes."
+];
+
+setInterval(() => {
+  let potato = document.createElement("div");
+  potato.className = "potato";
+  potato.textContent = "🥔";
+  potato.style.left = Math.random() * window.innerWidth + "px";
+  potato.style.fontSize = (20 + Math.random()*30) + "px";
+  document.body.appendChild(potato);
+  setTimeout(() => potato.remove(), 5000);
+}, 200);
+
+setInterval(() => {
+  document.getElementById("fact").textContent =
+    facts[Math.floor(Math.random() * facts.length)];
+}, 3000);
+</script>
+</body>
+</html>

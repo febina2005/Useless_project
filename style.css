@@ -1,0 +1,278 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  animation: fadeInBody 1.5s ease-in;
+  overflow-x: hidden;
+  background: linear-gradient(270deg, #fdf1f1, #f9fff3, #f1f8ff, #fff2f7);
+  background-size: 800% 800%;
+  animation: bgShift 30s ease infinite;
+}
+
+/* Animated background */
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInBody {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Section styling */
+.section {
+  background-color: rgba(255, 255, 255, 0.95);
+  margin: 60px auto;
+  padding: 30px 20px;
+  max-width: 600px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  animation: slideUp 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+  color: #2c2c2c;
+  font-size: 2em;
+}
+
+/* Buttons */
+.button-link, button {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(145deg, #ffdada, #fff);
+  color: #222;
+  border: 2px solid #d46a6a;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button-link:hover, button:hover {
+  background-color: #ffe6e6;
+  box-shadow: 0 0 15px rgba(255, 100, 100, 0.3);
+  transform: scale(1.05);
+}
+
+/* Emoji effect */
+.emoji-animate {
+  display: inline-block;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Firework Canvas */
+#fireworkCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Tic Tac & Memory Boards */
+#ticTacBoard, #memoryBoard {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+#ticTacBoard {
+  grid-template-columns: repeat(3, 70px);
+}
+#memoryBoard {
+  grid-template-columns: repeat(4, 70px);
+}
+
+.cell, .tile {
+  width: 70px;
+  height: 70px;
+  font-size: 36px;
+  background-color: #ffffff;
+  border: 2px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.cell:hover, .tile:hover {
+  transform: scale(1.08);
+}
+.tile.revealed {
+  background-color: #d0ffd6;
+}
+
+/* Thematic pages (optional) */
+body.rps-theme { background: radial-gradient(circle, #ffe0e0, #fff); }
+body.memory-theme { background: radial-gradient(circle, #d0ffd6, #fff); }
+body.tictac-theme { background: radial-gradient(circle, #d6f0ff, #fff); }
+body.fireworks-theme { background: radial-gradient(circle, #000, #1a1a1a); color: white; }
+/* Reset & base setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: linear-gradient(270deg, #ffe6e6, #fff0c2, #c2ffd8, #d6e0ff, #ffc2f4);
+  background-size: 1000% 1000%;
+  animation: animatedBg 30s ease infinite;
+  animation: fadeIn 1.2s ease;
+}
+
+/* Animated Background */
+@keyframes animatedBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Smooth Fade-In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Section card */
+.section {
+  background: rgba(255, 255, 255, 0.95);
+  margin: 60px auto;
+  padding: 30px 25px;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  animation: slideInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideInUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Buttons & Links */
+.button-link, button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  background: linear-gradient(145deg, #fff, #ffe5e5);
+  color: #222;
+  border: 2px solid #e48c8c;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button-link:hover, button:hover {
+  background: #ffeaea;
+  box-shadow: 0 0 12px rgba(255, 100, 100, 0.4);
+  transform: scale(1.05);
+}
+
+/* Animated Emojis */
+.emoji-animate {
+  display: inline-block;
+  animation: bounce 1.5s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Themed Backgrounds */
+body.rps-theme {
+  background: linear-gradient(to right, #ffe0e0, #fef2f2);
+}
+body.memory-theme {
+  background: linear-gradient(to right, #d0ffea, #f2fff9);
+}
+body.tictac-theme {
+  background: linear-gradient(to right, #e0f3ff, #f3faff);
+}
+body.fireworks-theme {
+  background: radial-gradient(circle, #000000, #1a1a1a);
+  color: white;
+}
+body.puzzle-theme {
+  background: linear-gradient(to right, #f2e0ff, #fff3fe);
+}
+body.quote-theme {
+  background: linear-gradient(to right, #fff2cc, #fefae0);
+}
+
+/* Game Grids */
+#memoryBoard, #ticTacBoard {
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#memoryBoard {
+  grid-template-columns: repeat(4, 70px);
+}
+#ticTacBoard {
+  grid-template-columns: repeat(3, 70px);
+}
+
+.cell, .tile {
+  width: 70px;
+  height: 70px;
+  font-size: 36px;
+  background-color: #ffffff;
+  border: 2px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.cell:hover, .tile:hover {
+  transform: scale(1.08);
+}
+
+.tile.revealed {
+  background-color: #d0ffd6;
+}
