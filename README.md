@@ -31,7 +31,5 @@ It’s a place where clicking random buttons can change your life… or just pla
 2. **`index.html` – The Main Hub**  
    - Choose any of the crazy modes or games from here.  
 
----
 
-## 📂 Folder Structure  
 
